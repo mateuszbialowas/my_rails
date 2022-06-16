@@ -1,11 +1,22 @@
-group :development, :test do
-    gem 'rspec-rails', '~> 6.0.0'
-    gem "faker"
-    gem "factory_bot"
+generate(:scaffold, "person name:string")
+route "root to: 'people#index'"
+rails_command("db:migrate")
+
+after_bundle do
+  git :init
+  git add: "."
+  git commit: %Q{ -m 'Initial commit' }
 end
 
-  bundle install
-  rails generate rspec:install
+
+# group :development, :test do
+#     gem 'rspec-rails', '~> 6.0.0'
+#     gem "faker"
+#     gem "factory_bot"
+# end
+
+#   bundle install
+#   rails generate rspec:install
 #   create  .rspec
 #   create  spec
 #   create  spec/spec_helper.rb
